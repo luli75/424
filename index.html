@@ -152,7 +152,7 @@
 
         /* Control del salto de línea dinámico */
         .mobile-break {
-            display: block; /* Se comporta como un salto de línea en móvil */
+            display: block;
         }
 
         @media (min-width: 768px) {
@@ -162,7 +162,7 @@
                 margin-bottom: 35px;
             }
             .mobile-break {
-                display: none; /* Se oculta en computadoras para que el texto fluya de corrido */
+                display: none;
             }
         }
 
@@ -178,7 +178,8 @@
             background: #0f141c;
             border: 1px solid #1e293b;
             padding: 12px 16px;
-            padding-left: 42px;
+            padding-right: 42px;
+            padding-left: 16px;
             border-radius: 12px;
             color: #ffffff;
             font-family: inherit;
@@ -200,7 +201,7 @@
 
         .search-icon {
             position: absolute;
-            left: 14px;
+            right: 14px;
             top: 50%;
             transform: translateY(-50%);
             fill: #475569;
@@ -446,9 +447,9 @@
 
             <div class="suggestions">
                 <span class="tag primary" id="btn-categorias">Ver por categorías</span>
-                <span class="tag">Farmacias de turno</span>
-                <span class="tag">Horarios de Colectivos</span>
-                <span class="tag">Comercios</span>
+                <span class="tag">Alquileres</span>
+                <span class="tag">Comida vegana</span>
+                <span class="tag">Ferias</span>
             </div>
         </div>
 
