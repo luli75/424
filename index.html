@@ -125,7 +125,26 @@
             margin-bottom: 24px;
         }
 
-        /* 🔍 CONTENEDOR DE BÚSQUEDA AJUSTADO CON LUPA A LA DERECHA */
+        /* --- CONTROL DE LÍNEAS RESPONSIVE --- */
+        /* En la Web: Cada bloque principal se vuelve una línea (2 líneas en total) */
+        .web-block {
+            display: block;
+        }
+        .cell-line {
+            display: inline;
+        }
+
+        /* En el Celular: Forzamos los 3 fragmentos internos para hacer las 3 líneas */
+        @media (max-width: 767px) {
+            .web-block {
+                display: inline; /* Desactiva el salto web */
+            }
+            .cell-line {
+                display: block; /* Activa las 3 líneas del celular */
+            }
+        }
+        /* ------------------------------------- */
+
         .search-container {
             width: 100%;
             max-width: 520px;
@@ -331,45 +350,89 @@
         .k-mouth {
             position: absolute; top: 54px; left: 50%; transform: translateX(-50%); width: 14px; height: 12px; border-radius: 0 0 8px 8px; background: #451a1a;
         }
-        .koala-character.happy .k-mouth { width: 16px; height: 10px; background: transparent; border-bottom: 4px solid #1e293b; border-radius: 50%; }
 
-        .interactive-pizza { position: absolute; left: 20px; top: 65px; width: 36px; height: 36px; z-index: 5; }
-        .p-body { width: 0; height: 0; border-top: 16px solid transparent; border-bottom: 16px solid transparent; border-left: 32px solid #f59e0b; position: relative; }
-        .p-body::after { content: ''; position: absolute; left: -35px; top: -16px; height: 32px; width: 5px; background: #b45309; border-radius: 4px 0 0 4px; }
-        .p-topping { position: absolute; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; }
-        .pt1 { left: -16px; top: -5px; } .pt2 { left: -24px; top: 4px; }
+        /* 🍕 PIZZA VEGANA REALISTA */
+        .interactive-pizza { position: absolute; left: 20px; top: 65px; width: 38px; height: 38px; z-index: 5; }
+        .p-body { 
+            width: 0; height: 0; 
+            border-top: 18px solid transparent; 
+            border-bottom: 18px solid transparent; 
+            border-left: 34px solid #dc2626; 
+            position: relative; 
+        }
+        .p-body::after { 
+            content: ''; position: absolute; left: -37px; top: -18px; height: 36px; width: 5px; 
+            background: #b45309; border-radius: 4px 0 0 4px; 
+        }
+        .p-tomato-cherry { position: absolute; width: 6px; height: 6px; background: #991b1b; border-radius: 50%; border: 1px solid #f87171; }
+        .pt1 { left: -16px; top: -5px; } 
+        .pt2 { left: -24px; top: 4px; }
+        .p-basil-leaf {
+            position: absolute; left: -18px; top: 2px; width: 7px; height: 4px; 
+            background: #16a34a; border-radius: 50% 0 50% 0; transform: rotate(15deg);
+            box-shadow: inset -1px -1px 0 #14532d;
+        }
 
-        /* 👨‍🚀 JUEGO 2: ASTRONAUTA */
+        /* 👨‍🚀 CASCO PREMIUM SIN ROSTRO VISIBLE PARA EL ASTRONAUTA */
         .astronaut-character {
             position: absolute;
-            right: 30px;
-            top: 50px;
-            width: 70px;
+            right: 25px;
+            top: 45px;
+            width: 75px;
             height: 95px;
         }
         .a-backpack {
-            position: absolute; left: -12px; top: 25px; width: 20px; height: 50px; background: #cbd5e1; border-radius: 8px; border: 2.5px solid #1e293b; z-index: 1;
+            position: absolute; left: -12px; top: 22px; width: 22px; height: 62px; 
+            background: linear-gradient(90deg, #94a3b8, #cbd5e1); border: 3px solid #0f172a; border-radius: 6px; z-index: 1;
         }
-        .a-suit-body {
-            position: absolute; top: 40px; left: 5px; width: 60px; height: 48px; background: #f8fafc; border-radius: 18px 18px 12px 12px; border: 2.5px solid #1e293b; z-index: 3; box-shadow: inset -5px -4px 0 rgba(0,0,0,0.08);
-        }
-        .a-shoulder-l, .a-shoulder-r {
-            position: absolute; top: 44px; width: 16px; height: 22px; background: #e2e8f0; border: 2.5px solid #1e293b; border-radius: 50%; z-index: 2;
-        }
-        .a-shoulder-l { left: -4px; } .a-shoulder-r { right: -4px; }
         .a-helmet {
-            position: absolute; top: 0; left: 7px; width: 56px; height: 54px; background: #ffffff; border-radius: 50%; border: 2.5px solid #1e293b; z-index: 4; box-shadow: inset -3px 3px 0 rgba(0,0,0,0.05);
+            position: absolute; top: 0; left: 6px; width: 62px; height: 60px; 
+            background: #ffffff; border: 3px solid #0f172a; border-radius: 50%; z-index: 4; 
+            box-shadow: inset -6px -6px 0 #cbd5e1, 0 4px 10px rgba(0,0,0,0.3);
+            display: flex; align-items: center; justify-content: center;
         }
         .a-visor-glass {
-            position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 40px; height: 30px; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e1b4b 100%); border-radius: 50% 50% 40% 40%; border: 2.5px solid #1e293b; overflow: hidden;
+            position: absolute; top: 6px; left: 5px; width: 46px; height: 44px; 
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 40%, #0f172a 100%); 
+            border: 3px solid #0f172a; border-radius: 50%; overflow: hidden; position: relative;
         }
-        .a-visor-glass::before {
-            content: ''; position: absolute; top: 3px; left: 5px; width: 24px; height: 7px; background: rgba(255, 255, 255, 0.35); border-radius: 10px; transform: rotate(-8deg);
+        .a-visor-reflection {
+            position: absolute; top: 4px; left: 6px; width: 20px; height: 10px; 
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(56, 189, 248, 0.2)); 
+            border-radius: 50%; transform: rotate(-15deg);
         }
-        .a-chest-badge {
-            position: absolute; top: 12px; left: 12px; width: 12px; height: 12px; background: #ef4444; border-radius: 3px; border: 1.5px solid #1e293b;
+        .a-helmet-glare {
+            position: absolute; top: 4px; left: 10px; width: 14px; height: 6px; 
+            background: rgba(255, 255, 255, 0.4); border-radius: 20px; transform: rotate(-15deg); z-index: 5; pointer-events: none;
         }
-        .a-chest-badge::after { content: ''; position: absolute; right: -14px; top: 1px; width: 10px; height: 4px; background: #3b82f6; }
+        .a-suit-body {
+            position: absolute; top: 54px; left: 10px; width: 54px; height: 42px; 
+            background: linear-gradient(180deg, #ffffff, #e2e8f0); border: 3px solid #0f172a; 
+            border-radius: 12px 12px 6px 6px; z-index: 3; box-shadow: inset -5px -3px 0 #cbd5e1;
+        }
+        .a-chest-panel {
+            position: absolute; top: 8px; left: 10px; width: 28px; height: 18px; 
+            background: #1e293b; border: 2px solid #0f172a; border-radius: 4px;
+        }
+        .a-chest-panel::after {
+            content: ''; position: absolute; top: 3px; left: 3px; width: 5px; height: 5px; 
+            background: #ef4444; box-shadow: 8px 0 0 #10b981, 16px 0 0 #3b82f6; border-radius: 1px;
+        }
+        .a-oxygen-hoses {
+            position: absolute; top: 12px; left: -6px; width: 8px; height: 18px; 
+            border: 2.5px solid #0f172a; border-right: none; border-radius: 6px 0 0 6px;
+            box-shadow: 52px 0 0 #cbd5e1;
+        }
+        .a-oxygen-hoses::after {
+            content: ''; position: absolute; top: -2.5px; right: -54px; width: 8px; height: 18px; 
+            border: 2.5px solid #0f172a; border-left: none; border-radius: 0 6px 6px 0;
+        }
+        .a-boots {
+            position: absolute; bottom: -10px; left: 14px; width: 46px; height: 12px; display: flex; justify-content: space-between; z-index: 2;
+        }
+        .a-boot-l, .a-boot-r {
+            width: 18px; height: 12px; background: #475569; border: 3px solid #0f172a; border-radius: 4px 4px 2px 2px; box-shadow: inset -2px -2px 0 #1e293b;
+        }
 
         /* 🥤 LATITA DE PEPSI */
         .interactive-pepsi { position: absolute; left: 20px; top: 65px; width: 28px; height: 46px; z-index: 5; }
@@ -390,6 +453,80 @@
         }
         .pepsi-logo-sphere::after {
             content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: #1d4ed8;
+        }
+
+        /* ============================================================
+           💥 DISEÑO DE OBSTÁCULOS RETRO
+        ============================================================ */
+        .obstacle {
+            position: absolute;
+            z-index: 4;
+            display: block;
+        }
+
+        /* Patita de Pollo */
+        .obs-chicken { width: 34px; height: 24px; position: relative; }
+        .obs-chicken-meat {
+            position: absolute; right: 0; top: 0; width: 24px; height: 22px; 
+            background: linear-gradient(135deg, #d97706, #b45309); border: 2px solid #0f172a; 
+            border-radius: 12px 16px 16px 12px; box-shadow: inset -4px -3px 0 #78350f, 2px 2px 5px rgba(0,0,0,0.4);
+        }
+        .obs-chicken-meat::before {
+            content: ''; position: absolute; left: 4px; top: 3px; width: 8px; height: 4px; background: #fbbf24; border-radius: 50%;
+        }
+        .obs-chicken-bone {
+            position: absolute; left: 0; top: 8px; width: 12px; height: 6px; background: #f1f5f9; border: 2px solid #0f172a; border-right: none;
+        }
+        .obs-chicken-bone::before {
+            content: ''; position: absolute; left: -4px; top: -5px; width: 7px; height: 7px; background: #f1f5f9; border: 2px solid #0f172a; border-radius: 50%;
+            box-shadow: 0 8px 0 #f1f5f9, 0 8px 0 0 #0f172a, inset -1px -1px 0 #cbd5e1;
+        }
+
+        /* Bife / Steak */
+        .obs-steak { 
+            width: 36px; height: 26px; 
+            position: relative;
+        }
+        .obs-steak-meat {
+            width: 36px; height: 26px;
+            background: linear-gradient(135deg, #ef4444, #dc2626); border: 2px solid #0f172a; 
+            border-radius: 14px 20px 16px 10px; box-shadow: inset -4px -4px 0 #991b1b, 2px 2px 5px rgba(0,0,0,0.4);
+            position: absolute; top:0; left:0;
+        }
+        .obs-steak-meat::before {
+            content: ''; position: absolute; right: -1px; top: 3px; width: 6px; height: 16px; 
+            background: #fff1f2; border-left: 2px solid #0f172a; border-radius: 0 10px 10px 0;
+        }
+        .obs-steak-fat-line {
+            position: absolute; left: 6px; top: 6px; width: 14px; height: 4px; background: #fff1f2; 
+            transform: rotate(-15deg); border-radius: 2px; box-shadow: 4px 8px 0 #fff1f2;
+        }
+
+        /* Roca Espacial */
+        .obs-rock { 
+            width: 28px; height: 26px; 
+            background: linear-gradient(135deg, #78716c, #57534e); border: 2px solid #0f172a; 
+            border-radius: 8px 14px 10px 12px; box-shadow: inset -4px -4px 0 #44403c, 2px 2px 6px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        .obs-rock-crater-1, .obs-rock-crater-2 {
+            position: absolute; background: #292524; border-radius: 50%; border-bottom: 1.5px solid #a8a29e;
+        }
+        .obs-rock-crater-1 { left: 5px; top: 5px; width: 6px; height: 6px; }
+        .obs-rock-crater-2 { right: 6px; bottom: 5px; width: 5px; height: 5px; }
+
+        /* Estrella / Nave Retro */
+        .obs-star-retro { 
+            width: 26px; height: 26px; position: relative; filter: drop-shadow(0 0 5px #facc15);
+        }
+        .obs-star-body {
+            position: absolute; left: 10px; top: 0; width: 6px; height: 26px; background: #facc15; box-shadow: inset -1.5px -2px 0 #ca8a04;
+        }
+        .obs-star-body::after {
+            content: ''; position: absolute; left: -10px; top: 10px; width: 26px; height: 6px; background: #facc15; box-shadow: inset -2px -1.5px 0 #ca8a04;
+        }
+        .obs-star-core {
+            position: absolute; left: 8px; top: 8px; width: 10px; height: 10px; background: #ffffff; border-radius: 1px; z-index: 2;
         }
 
         .pixel-heart, .pixel-star { position: absolute; font-size: 16px; opacity: 0; animation: floatPixel 1.2s ease forwards; }
@@ -450,8 +587,13 @@
         <div class="hero-section" id="hero-block">
             <h1>Explora <span>Libertador</span></h1>
             <p class="description">
-                Tu conexión directa con todo lo que Libertador tiene para ofrecer. <br>
-                Integrando comercios, servicios y novedades.
+                <span class="web-block">
+                    <span class="cell-line">Tu conexión directa con todo lo que </span>
+                    <span class="cell-line">Libertador tiene para ofrecer. </span>
+                </span>
+                <span class="web-block">
+                    <span class="cell-line">Integrando comercios, servicios y novedades.</span>
+                </span>
             </p>
 
             <div class="search-container">
@@ -489,8 +631,15 @@
             <div class="game-stage" id="stage-koala">
                 <div class="particles-layer" id="layer-hearts"></div>
                 <div class="victory-text" id="victory-text-koala">YUMMY! ❤️</div>
+                
+                <div id="obstacles-koala-wrapper"></div>
+
                 <div class="interactive-pizza" id="game-pizza">
-                    <div class="p-body"><div class="p-topping pt1"></div><div class="p-topping pt2"></div></div>
+                    <div class="p-body">
+                        <div class="p-tomato-cherry pt1"></div>
+                        <div class="p-tomato-cherry pt2"></div>
+                        <div class="p-basil-leaf"></div>
+                    </div>
                 </div>
                 <div class="koala-character" id="game-koala">
                     <div class="k-ear-l"></div><div class="k-ear-r"></div>
@@ -514,8 +663,10 @@
             <h2>An astronaut<br>needs a pepsi</h2>
             <div class="game-stage" id="stage-pepsi">
                 <div class="particles-layer" id="layer-stars"></div>
-                <div class="victory-text" id="victory-text-pepsi">REFRESH! 🧊</div>
+                <div class="victory-text" id="victory-text-pepsi">COOL! 🧊</div>
                 
+                <div id="obstacles-pepsi-wrapper"></div>
+
                 <div class="interactive-pepsi" id="game-pepsi">
                     <div class="pepsi-rim-top"></div>
                     <div class="pepsi-cylinder">
@@ -526,13 +677,19 @@
 
                 <div class="astronaut-character" id="game-astronaut">
                     <div class="a-backpack"></div>
-                    <div class="a-shoulder-l"></div>
-                    <div class="a-shoulder-r"></div>
                     <div class="a-suit-body">
-                        <div class="a-chest-badge"></div>
+                        <div class="a-chest-panel"></div>
+                        <div class="a-oxygen-hoses"></div>
                     </div>
                     <div class="a-helmet">
-                        <div class="a-visor-glass"></div>
+                        <div class="a-visor-glass">
+                            <div class="a-visor-reflection"></div>
+                        </div>
+                        <div class="a-helmet-glare"></div>
+                    </div>
+                    <div class="a-boots">
+                        <div class="a-boot-l"></div>
+                        <div class="a-boot-r"></div>
                     </div>
                 </div>
             </div>
@@ -582,8 +739,8 @@
                 { nombre: "Hospedaje Central", desc: "Atención cálida, habitaciones climatizadas, Wi-Fi libre de alta velocidad y cochera.", status: "● Disponible" }
             ],
             supermercados: [
-                { nombre: "Supermercado El Sol", desc: "Carnicería premium, verdulería fresca y góndolas completas con marcas líderes.", status: "● Abierto" },
-                { nombre: "Autoservicio Familiar", desc: "Excelente atención, promociones semanales vigentes and artículos de limpieza.", status: "● Abierto" }
+                { nombre: "Supermercado El Sol", desc: "Carnicería premium, verdulería fresca and góndolas completas con marcas líderes.", status: "● Abierto" },
+                { nombre: "Autoservicio Familiar", desc: "Excelente atención, promociones semanales vigentes y artículos de limpieza.", status: "● Abierto" }
             ],
             belleza: [
                 { nombre: "Estética Integral", desc: "Cuidado personal, tratamientos faciales, manicuría y peluquería profesional.", status: "● Abierto" }
@@ -625,6 +782,10 @@
         const charSpeed = 1.1; 
         let animationFrameId = null;
 
+        let listaObstaculos = [];
+        const wrapperKoala = document.getElementById('obstacles-koala-wrapper');
+        const wrapperPepsi = document.getElementById('obstacles-pepsi-wrapper');
+
         function cargarCategoria(categoria) {
             gridTarjetas.innerHTML = "";
             if(!baseDeDatos[categoria]) return;
@@ -652,6 +813,9 @@
             btnVegana.classList.remove('active');
             btnPepsi.classList.remove('active');
             mainContainer.classList.remove('results-active');
+            wrapperKoala.innerHTML = "";
+            wrapperPepsi.innerHTML = "";
+            listaObstaculos = [];
         }
 
         btnCategorias.addEventListener('click', () => {
@@ -721,8 +885,50 @@
             document.getElementById('victory-text-koala').classList.remove('show');
             document.getElementById('victory-text-pepsi').classList.remove('show');
             
+            wrapperKoala.innerHTML = "";
+            wrapperPepsi.innerHTML = "";
+            listaObstaculos = [];
+
+            if (type === 'koala') {
+                crearObstaculo('chicken', 190, 25); 
+                crearObstaculo('steak', 310, 105); 
+            } else {
+                crearObstaculo('rock', 190, 35); 
+                crearObstaculo('star', 310, 115); 
+            }
+            
             updateRenderPosition();
             gameLoop();
+        }
+
+        function crearObstaculo(claseGrafica, startX, startY) {
+            const obsDiv = document.createElement('div');
+            obsDiv.className = `obstacle obs-${claseGrafica}`;
+            obsDiv.style.left = startX + 'px';
+            obsDiv.style.top = startY + 'px';
+            
+            if (claseGrafica === 'chicken') {
+                obsDiv.innerHTML = `<div class="obs-chicken-meat"></div><div class="obs-chicken-bone"></div>`;
+            } else if (claseGrafica === 'steak') {
+                obsDiv.innerHTML = `<div class="obs-steak-meat"><div class="obs-steak-fat-line"></div></div>`;
+            } else if (claseGrafica === 'rock') {
+                obsDiv.innerHTML = `<div class="obs-rock-crater-1"></div><div class="obs-rock-crater-2"></div>`;
+            } else if (claseGrafica === 'star') {
+                obsDiv.innerHTML = `<div class="obs-star-body"></div><div class="obs-star-core"></div>`;
+            }
+
+            if (currentGame === 'koala') wrapperKoala.appendChild(obsDiv);
+            else wrapperPepsi.appendChild(obsDiv);
+
+            listaObstaculos.push({
+                element: obsDiv,
+                type: claseGrafica,
+                x: startX,
+                y: startY,
+                w: 32,
+                h: 26,
+                speed: 1.1
+            });
         }
 
         function gameLoop() {
@@ -730,7 +936,7 @@
 
             if (isPlaying) {
                 characterY += charSpeed * charDirection;
-                if (characterY >= 90) { charDirection = -1; }
+                if (characterY >= 85) { charDirection = -1; }
                 if (characterY <= 10) { charDirection = 1; }
 
                 if (currentGame === 'koala') {
@@ -738,6 +944,46 @@
                 } else if (currentGame === 'pepsi') {
                     ast.style.top = characterY + 'px';
                 }
+
+                listaObstaculos.forEach(obs => {
+                    obs.x -= obs.speed;
+                    
+                    if (obs.x < -40) {
+                        obs.x = 420; 
+                        obs.y = 15 + Math.random() * 120;
+
+                        if (currentGame === 'koala') {
+                            const nextType = obs.type === 'chicken' ? 'steak' : 'chicken';
+                            obs.type = nextType;
+                            obs.element.className = `obstacle obs-${nextType}`;
+                            if (nextType === 'chicken') {
+                                obs.element.innerHTML = `<div class="obs-chicken-meat"></div><div class="obs-chicken-bone"></div>`;
+                            } else {
+                                obs.element.innerHTML = `<div class="obs-steak-meat"><div class="obs-steak-fat-line"></div></div>`;
+                            }
+                        } else {
+                            const nextType = obs.type === 'rock' ? 'star' : 'rock';
+                            obs.type = nextType;
+                            obs.element.className = `obstacle obs-${nextType}`;
+                            if (nextType === 'rock') {
+                                obs.element.innerHTML = `<div class="obs-rock-crater-1"></div><div class="obs-rock-crater-2"></div>`;
+                            } else {
+                                obs.element.innerHTML = `<div class="obs-star-body"></div><div class="obs-star-core"></div>`;
+                            }
+                        }
+                    }
+                    obs.element.style.left = obs.x + 'px';
+                    obs.element.style.top = obs.y + 'px';
+
+                    let itemW = currentGame === 'koala' ? 38 : 28;
+                    let itemH = currentGame === 'koala' ? 38 : 46;
+
+                    if (objX < obs.x + obs.w && objX + itemW > obs.x && objY < obs.y + obs.h && objY + itemH > obs.y) {
+                        objX = 20; 
+                        updateRenderPosition();
+                    }
+                });
+
                 checkHitbox();
             }
 
@@ -767,8 +1013,8 @@
         function checkHitbox() {
             if (!currentGame || !isPlaying) return;
             
-            if (objX >= 310) {
-                if (objY >= (characterY - 15) && objY <= (characterY + 70)) {
+            if (objX >= 320) {
+                if (objY >= (characterY - 15) && objY <= (characterY + 75)) {
                     triggerVictoryArcade();
                 }
             }
