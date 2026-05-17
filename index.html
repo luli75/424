@@ -24,38 +24,51 @@
             position: relative;
         }
 
-        /* Iluminación ambiental de fondo en el celeste original */
+        /* Iluminación ambiental de fondo */
         body::before {
             content: '';
             position: absolute;
             top: -10%;
             left: 50%;
             transform: translateX(-50%);
-            width: 600px;
-            height: 300px;
+            width: 100%;
+            max-width: 600px;
+            height: 250px;
             background: radial-gradient(circle, rgba(59, 130, 246, 0.04) 0%, transparent 70%);
             pointer-events: none;
         }
 
-        /* Barra superior maximizada hacia los bordes */
+        /* Barra superior */
         header {
             width: 100%;
-            max-width: 100%;
-            padding: 30px 40px;
+            padding: 20px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 10;
         }
 
-        /* Logo LSM recuperando el formato sólido, tipografía y celeste original */
+        @media (min-width: 768px) {
+            header {
+                padding: 30px 40px;
+            }
+        }
+
+        /* Logo LSM */
         .logo-lsm {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 800;
             letter-spacing: 0.5px;
             color: #3b82f6;
             text-transform: uppercase;
             text-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
             user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .logo-lsm {
+                font-size: 1.8rem;
+            }
         }
 
         .instagram-link {
@@ -65,34 +78,58 @@
             align-items: center;
         }
 
-        /* Hover de Instagram unificado con el celeste original */
         .instagram-link:hover {
             color: #3b82f6;
             filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.8));
         }
 
+        /* Contenedor principal: Restaurada su altura y comportamiento centrado original */
         main {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
-            max-width: 680px;
+            justify-content: center; /* Vuelve a centrar verticalmente antes del clic */
+            padding: 15px 20px 40px 20px;
             width: 100%;
+            max-width: 1100px;
             margin: 0 auto;
-            text-align: center;
-            transform: translateY(-60px);
+            z-index: 5;
         }
 
-        /* Título pesado con Libertador en el celeste original */
+        @media (min-width: 768px) {
+            main {
+                padding: 40px;
+                transform: translateY(-30px); /* Eleva el buscador como lo tenías antes */
+            }
+        }
+
+        /* Cuando las categorías están activas, quitamos la elevación fija para que el scroll fluya bien */
+        main.results-active {
+            justify-content: flex-start;
+        }
+        @media (min-width: 768px) {
+            main.results-active {
+                transform: translateY(0);
+            }
+        }
+
+        /* Zona Hero (Buscador y Título) */
+        .hero-section {
+            width: 100%;
+            max-width: 680px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
         h1 {
-            font-size: 3.2rem;
+            font-size: 2.1rem;
             font-weight: 800;
-            letter-spacing: -1.5px;
+            letter-spacing: -1px;
             color: #ffffff;
-            margin-bottom: 16px;
-            line-height: 1.1;
+            margin-bottom: 12px;
+            line-height: 1.2;
+            margin-top: 10px;
         }
 
         h1 span {
@@ -100,32 +137,55 @@
             text-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
         }
 
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3.2rem;
+                letter-spacing: -1.5px;
+                line-height: 1.1;
+                margin-bottom: 16px;
+                margin-top: 0;
+            }
+        }
+
         .description {
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             font-weight: 300;
-            line-height: 1.6;
+            line-height: 1.5;
             color: #94a3b8;
-            margin-bottom: 35px;
+            margin-bottom: 24px;
+        }
+
+        @media (min-width: 768px) {
+            .description {
+                font-size: 1.05rem;
+                line-height: 1.6;
+                margin-bottom: 35px;
+            }
         }
 
         .search-container {
             width: 100%;
             max-width: 520px;
             position: relative;
-            margin-bottom: 22px;
+            margin: 0 auto 18px auto;
         }
 
-        /* Caja de búsqueda con el celeste original en foco */
+        @media (min-width: 768px) {
+            .search-container {
+                margin-bottom: 22px;
+            }
+        }
+
         .search-input {
             width: 100%;
             background: #0f141c;
             border: 1px solid #1e293b;
-            padding: 14px 20px;
-            padding-left: 44px;
+            padding: 12px 16px;
+            padding-left: 42px;
             border-radius: 12px;
             color: #ffffff;
             font-family: inherit;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: all 0.25s ease;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
@@ -143,7 +203,7 @@
 
         .search-icon {
             position: absolute;
-            left: 16px;
+            left: 14px;
             top: 50%;
             transform: translateY(-50%);
             fill: #475569;
@@ -155,35 +215,42 @@
             fill: #3b82f6;
         }
 
-        /* Sugerencias directas */
         .suggestions {
             display: flex;
             gap: 8px;
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
+            width: 100%;
         }
 
         .tag {
             background: #0f141c;
             border: 1px solid #1e293b;
             color: #94a3b8;
-            padding: 6px 14px;
-            font-size: 0.8rem;
+            padding: 6px 12px;
+            font-size: 0.75rem;
             font-weight: 500;
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.2s ease;
+            white-space: nowrap;
         }
 
-        /* "Ver por categorías" completamente integrado a la paleta azul original solicitado */
+        @media (min-width: 768px) {
+            .tag {
+                padding: 6px 14px;
+                font-size: 0.8rem;
+            }
+        }
+
         .tag.primary {
             color: #3b82f6; 
             border-color: rgba(59, 130, 246, 0.25);
             text-shadow: 0 0 8px rgba(59, 130, 246, 0.2);
         }
 
-        .tag:hover {
+        .tag:hover, .tag.active {
             background: #1e293b;
             color: #ffffff;
             border-color: #475569;
@@ -195,6 +262,167 @@
             color: #3b82f6;
             filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.4));
         }
+
+        /* Sección de Resultados */
+        .results-section {
+            display: none;
+            width: 100%;
+            margin-top: 35px;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .explore-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .explore-container {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 30px;
+            }
+        }
+
+        /* Menú de Categorías Lateral / Horizontal Deslizable */
+        .categories-sidebar {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            width: 100%;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .categories-sidebar::-webkit-scrollbar {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .categories-sidebar {
+                flex-direction: column;
+                width: 220px;
+                flex-shrink: 0;
+                overflow-x: visible;
+                padding-bottom: 0;
+                border-right: 1px solid #1e293b;
+                padding-right: 15px;
+            }
+        }
+
+        .category-item {
+            padding: 8px 16px;
+            background: #0f141c;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            text-align: left;
+        }
+
+        .category-item:hover, .category-item.active {
+            background: rgba(59, 130, 246, 0.08);
+            border-color: #3b82f6;
+            color: #ffffff;
+        }
+
+        /* Cuadrícula de tarjetas de Comercios */
+        .cards-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            width: 100%;
+        }
+
+        @media (min-width: 540px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 900px) {
+            .cards-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Tarjeta con soporte para touch en móviles */
+        .business-card {
+            background: rgba(15, 20, 28, 0.6);
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: left;
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            -webkit-tap-highlight-color: transparent; /* Elimina recuadro gris nativo de Android/iOS al tocar */
+        }
+
+        /* EFECTO GLOW BLANCO (Tanto en Mouse Hover como al hacer Touch/Active en celular) */
+        .business-card:hover, 
+        .business-card:active,
+        .business-card.touch-glow {
+            background: rgba(20, 28, 38, 0.8);
+            border-color: #ffffff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .business-logo-placeholder {
+            width: 100%;
+            height: 120px;
+            background: #090d14;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #475569;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px dashed #1e293b;
+            text-transform: uppercase;
+        }
+
+        .business-info h3 {
+            font-size: 1.05rem;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .business-info p {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            font-weight: 300;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .business-status {
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-open { color: #10b981; }
+        .status-closed { color: #ef4444; }
     </style>
 </head>
 <body>
@@ -211,27 +439,133 @@
         </a>
     </header>
 
-    <main>
-        <h1>Explora <span>Libertador</span></h1>
-        <p class="description">
-            Tu conexión directa con todo lo que Libertador tiene para ofrecer. <br>
-            Integrando comercios, servicios y novedades.
-        </p>
+    <main id="main-container">
+        <div class="hero-section" id="hero-block">
+            <h1>Explora <span>Libertador</span></h1>
+            <p class="description">
+                Tu conexión directa con todo lo que Libertador tiene para ofrecer. <br>
+                Integrando comercios, servicios y novedades.
+            </p>
 
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="Buscar...">
-            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-            </svg>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Buscar...">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+            </div>
+
+            <div class="suggestions">
+                <span class="tag primary" id="btn-categorias">Ver por categorías</span>
+                <span class="tag">Farmacias de turno</span>
+                <span class="tag">Horarios de Colectivos</span>
+                <span class="tag">Comercios</span>
+            </div>
         </div>
 
-        <div class="suggestions">
-            <span class="tag primary">Ver por categorías</span>
-            <span class="tag">Farmacias de turno</span>
-            <span class="tag">Horarios de Colectivos</span>
-            <span class="tag">Comercios</span>
+        <div class="results-section" id="seccion-resultados">
+            <div class="explore-container">
+                
+                <div class="categories-sidebar">
+                    <div class="category-item active">🍔 Gastronomía</div>
+                    <div class="category-item">🏨 Alojamiento</div>
+                    <div class="category-item">🛒 Supermercados</div>
+                    <div class="category-item">✨ Estética y Belleza</div>
+                    <div class="category-item">💻 Tecnología</div>
+                    <div class="category-item">🛠️ Servicios</div>
+                </div>
+
+                <div class="cards-grid">
+                    
+                    <div class="business-card">
+                        <div class="business-logo-placeholder">[ Imperio Logo ]</div>
+                        <div class="business-info">
+                            <h3>Imperio</h3>
+                            <p>Somos creadores de las mejores comidas en LSM 🔥</p>
+                            <span class="business-status status-open">● Abierto <span style="color:#475569; font-weight:300;">| Hasta las 15:00</span></span>
+                        </div>
+                    </div>
+
+                    <div class="business-card">
+                        <div class="business-logo-placeholder">[ Marilú Logo ]</div>
+                        <div class="business-info">
+                            <h3>Marilú</h3>
+                            <p>Sabores únicos para disfrutar. Amplia selección de hamburguesas y pizzas.</p>
+                            <span class="business-status status-closed">● Cerrado <span style="color:#475569; font-weight:300;">| Abre a la noche</span></span>
+                        </div>
+                    </div>
+
+                    <div class="business-card">
+                        <div class="business-logo-placeholder">[ Yo Heladerías ]</div>
+                        <div class="business-info">
+                            <h3>Yo heladerías</h3>
+                            <p>Somos una heladería y cafetería que ofrece momentos de sabor único.</p>
+                            <span class="business-status status-open">● Abierto <span style="color:#475569; font-weight:300;">| Hasta las 23:30</span></span>
+                        </div>
+                    </div>
+
+                    <div class="business-card">
+                        <div class="business-logo-placeholder">[ Tranqui ]</div>
+                        <div class="business-info">
+                            <h3>TRANQUI</h3>
+                            <p>Somos un emprendimiento familiar. Nos dedicamos a la cafetería de especialidad.</p>
+                            <span class="business-status status-open">● Abierto <span style="color:#475569; font-weight:300;">| Hasta las 15:00</span></span>
+                        </div>
+                    </div>
+
+                    <div class="business-card">
+                        <div class="business-logo-placeholder">[ El Rincón ]</div>
+                        <div class="business-info">
+                            <h3>El rincón de la empanada</h3>
+                            <p>Donde hay calidad no hay competencia. Las mejores empanadas caseras.</p>
+                            <span class="business-status status-closed">● Cerrado <span style="color:#475569; font-weight:300;">| Abre a las 19:30</span></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </main>
+
+    <script>
+        const btnCategorias = document.getElementById('btn-categorias');
+        const seccionResultados = document.getElementById('seccion-resultados');
+        const mainContainer = document.getElementById('main-container');
+        const heroBlock = document.getElementById('hero-block');
+
+        btnCategorias.addEventListener('click', () => {
+            if (seccionResultados.style.display === 'block') {
+                seccionResultados.style.display = 'none';
+                btnCategorias.classList.remove('active');
+                mainContainer.classList.remove('results-active');
+            } else {
+                seccionResultados.style.display = 'block';
+                btnCategorias.classList.add('active');
+                mainContainer.classList.add('results-active');
+                
+                // CONTROL DE SCROLL EXACTO: Calcula la posición del buscador y frena un poco antes de los resultados
+                setTimeout(() => {
+                    const yOffset = -25; // Pequeño espacio de seguridad hacia arriba para evitar el corte brusco
+                    const yPosition = seccionResultados.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    
+                    window.scrollTo({
+                        top: yPosition,
+                        behavior: 'smooth'
+                    });
+                }, 50);
+            }
+        });
+
+        // OPTIMIZACIÓN TOUCH PARA CELULARES: Forza el efecto de Glow Blanco al tocar tarjetas en pantallas táctiles
+        const cards = document.querySelectorAll('.business-card');
+        cards.forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.classList.add('touch-glow');
+            });
+            card.addEventListener('touchend', () => {
+                setTimeout(() => { card.classList.remove('touch-glow'); }, 300);
+            });
+        });
+    </script>
 
 </body>
 </html>
