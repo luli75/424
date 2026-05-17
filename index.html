@@ -24,50 +24,38 @@
             position: relative;
         }
 
-        /* Iluminación ambiental de fondo adaptable */
+        /* Iluminación ambiental de fondo en el celeste original */
         body::before {
             content: '';
             position: absolute;
             top: -10%;
             left: 50%;
             transform: translateX(-50%);
-            width: 100%;
-            max-width: 600px;
+            width: 600px;
             height: 300px;
             background: radial-gradient(circle, rgba(59, 130, 246, 0.04) 0%, transparent 70%);
             pointer-events: none;
         }
 
-        /* Barra superior fluida y responsive */
+        /* Barra superior maximizada hacia los bordes */
         header {
             width: 100%;
-            padding: 24px 20px;
+            max-width: 100%;
+            padding: 30px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        @media (min-width: 768px) {
-            header {
-                padding: 30px 40px;
-            }
-        }
-
-        /* Logo LSM sólido */
+        /* Logo LSM recuperando el formato sólido, tipografía y celeste original */
         .logo-lsm {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 800;
             letter-spacing: 0.5px;
             color: #3b82f6;
             text-transform: uppercase;
             text-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
             user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .logo-lsm {
-                font-size: 1.8rem;
-            }
         }
 
         .instagram-link {
@@ -77,12 +65,12 @@
             align-items: center;
         }
 
+        /* Hover de Instagram unificado con el celeste original */
         .instagram-link:hover {
             color: #3b82f6;
             filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.8));
         }
 
-        /* Contenedor principal centrado con ajuste responsive */
         main {
             flex: 1;
             display: flex;
@@ -90,27 +78,21 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            width: 100%;
             max-width: 680px;
+            width: 100%;
             margin: 0 auto;
             text-align: center;
-            transform: translateY(-20px);
+            transform: translateY(-60px);
         }
 
-        @media (min-width: 768px) {
-            main {
-                transform: translateY(-60px);
-            }
-        }
-
-        /* Título con tamaño fluido para pantallas móviles y PC */
+        /* Título pesado con Libertador en el celeste original */
         h1 {
-            font-size: 2.2rem;
+            font-size: 3.2rem;
             font-weight: 800;
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
             color: #ffffff;
-            margin-bottom: 14px;
-            line-height: 1.2;
+            margin-bottom: 16px;
+            line-height: 1.1;
         }
 
         h1 span {
@@ -118,59 +100,34 @@
             text-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
         }
 
-        @media (min-width: 768px) {
-            h1 {
-                font-size: 3.2rem;
-                letter-spacing: -1.5px;
-                line-height: 1.1;
-                margin-bottom: 16px;
-            }
-        }
-
         .description {
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             font-weight: 300;
-            line-height: 1.5;
+            line-height: 1.6;
             color: #94a3b8;
-            margin-bottom: 28px;
+            margin-bottom: 35px;
         }
 
-        @media (min-width: 768px) {
-            .description {
-                font-size: 1.05rem;
-                line-height: 1.6;
-                margin-bottom: 35px;
-            }
-        }
-
-        /* Buscador responsive al ancho de pantalla */
         .search-container {
             width: 100%;
             max-width: 520px;
             position: relative;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
+        /* Caja de búsqueda con el celeste original en foco */
         .search-input {
             width: 100%;
             background: #0f141c;
             border: 1px solid #1e293b;
-            padding: 12px 16px;
-            padding-left: 42px;
+            padding: 14px 20px;
+            padding-left: 44px;
             border-radius: 12px;
             color: #ffffff;
             font-family: inherit;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             transition: all 0.25s ease;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        @media (min-width: 768px) {
-            .search-input {
-                padding: 14px 20px;
-                padding-left: 44px;
-                font-size: 0.95rem;
-            }
         }
 
         .search-input:focus {
@@ -186,7 +143,7 @@
 
         .search-icon {
             position: absolute;
-            left: 14px;
+            left: 16px;
             top: 50%;
             transform: translateY(-50%);
             fill: #475569;
@@ -194,10 +151,87 @@
             transition: fill 0.2s ease;
         }
 
-        @media (min-width: 768px) {
-            .search-icon {
-                left: 16px;
-            }
+        .search-input:focus + .search-icon {
+            fill: #3b82f6;
         }
 
-        .search-input
+        /* Sugerencias directas */
+        .suggestions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #0f141c;
+            border: 1px solid #1e293b;
+            color: #94a3b8;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        /* "Ver por categorías" completamente integrado a la paleta azul original solicitado */
+        .tag.primary {
+            color: #3b82f6; 
+            border-color: rgba(59, 130, 246, 0.25);
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.2);
+        }
+
+        .tag:hover {
+            background: #1e293b;
+            color: #ffffff;
+            border-color: #475569;
+        }
+
+        .tag.primary:hover {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.05);
+            color: #3b82f6;
+            filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.4));
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-lsm">LSM</div>
+        
+        <a href="https://instagram.com" target="_blank" class="instagram-link" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+        </a>
+    </header>
+
+    <main>
+        <h1>Explora <span>Libertador</span></h1>
+        <p class="description">
+            Tu conexión directa con todo lo que Libertador tiene para ofrecer. <br>
+            Integrando comercios, servicios y novedades.
+        </p>
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Buscar...">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+        </div>
+
+        <div class="suggestions">
+            <span class="tag primary">Ver por categorías</span>
+            <span class="tag">Farmacias de turno</span>
+            <span class="tag">Horarios de Colectivos</span>
+            <span class="tag">Comercios</span>
+        </div>
+    </main>
+
+</body>
+</html>
