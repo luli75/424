@@ -83,30 +83,29 @@
             filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.8));
         }
 
-        /* Contenedor principal: Equilibrio un poco más arriba del centro */
+        /* Contenedor principal */
         main {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Centra el contenido inicialmente */
+            justify-content: center;
             padding: 20px;
             width: 100%;
             max-width: 1100px;
             margin: 0 auto;
             z-index: 5;
-            transform: translateY(-50px); /* CORRECCIÓN: Lo levanta del centro en el celular lo justo y necesario */
+            transform: translateY(-50px);
             transition: transform 0.3s ease;
         }
 
         @media (min-width: 768px) {
             main {
                 padding: 40px;
-                transform: translateY(-80px); /* Un toque más arriba del centro en la compu */
+                transform: translateY(-80px);
             }
         }
 
-        /* Al activar resultados, quitamos el desplazamiento para que fluya el scroll */
         main.results-active {
             justify-content: flex-start;
             transform: translateY(0);
@@ -151,11 +150,19 @@
             margin-bottom: 24px;
         }
 
+        /* Control del salto de línea dinámico */
+        .mobile-break {
+            display: block; /* Se comporta como un salto de línea en móvil */
+        }
+
         @media (min-width: 768px) {
             .description {
                 font-size: 1.05rem;
                 line-height: 1.6;
                 margin-bottom: 35px;
+            }
+            .mobile-break {
+                display: none; /* Se oculta en computadoras para que el texto fluya de corrido */
             }
         }
 
@@ -426,7 +433,7 @@
         <div class="hero-section" id="hero-block">
             <h1>Explora <span>Libertador</span></h1>
             <p class="description">
-                Tu conexión directa con todo lo que Libertador tiene para ofrecer. <br>
+                Tu conexión directa con todo lo que <br class="mobile-break"> Libertador tiene para ofrecer. <br>
                 Integrando comercios, servicios y novedades.
             </p>
 
@@ -472,7 +479,7 @@
                         <div class="business-logo-placeholder">[ Marilú Logo ]</div>
                         <div class="business-info">
                             <h3>Marilú</h3>
-                            <p>Sabores uniques para disfrutar. Amplia selección de hamburguesas y pizzas.</p>
+                            <p>Sabores únicos para disfrutar. Amplia selección de hamburguesas y pizzas.</p>
                             <span class="business-status status-closed">● Cerrado <span style="color:#475569; font-weight:300;">| Abre a la noche</span></span>
                         </div>
                     </div>
