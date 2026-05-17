@@ -41,7 +41,7 @@
         /* Barra superior */
         header {
             width: 100%;
-            padding: 20px 20px;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -83,38 +83,36 @@
             filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.8));
         }
 
-        /* Contenedor principal: Restaurada su altura y comportamiento centrado original */
+        /* Contenedor principal: Equilibrio un poco más arriba del centro */
         main {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Vuelve a centrar verticalmente antes del clic */
-            padding: 15px 20px 40px 20px;
+            justify-content: center; /* Centra el contenido inicialmente */
+            padding: 20px;
             width: 100%;
             max-width: 1100px;
             margin: 0 auto;
             z-index: 5;
+            transform: translateY(-50px); /* CORRECCIÓN: Lo levanta del centro en el celular lo justo y necesario */
+            transition: transform 0.3s ease;
         }
 
         @media (min-width: 768px) {
             main {
                 padding: 40px;
-                transform: translateY(-30px); /* Eleva el buscador como lo tenías antes */
+                transform: translateY(-80px); /* Un toque más arriba del centro en la compu */
             }
         }
 
-        /* Cuando las categorías están activas, quitamos la elevación fija para que el scroll fluya bien */
+        /* Al activar resultados, quitamos el desplazamiento para que fluya el scroll */
         main.results-active {
             justify-content: flex-start;
-        }
-        @media (min-width: 768px) {
-            main.results-active {
-                transform: translateY(0);
-            }
+            transform: translateY(0);
         }
 
-        /* Zona Hero (Buscador y Título) */
+        /* Zona Hero */
         .hero-section {
             width: 100%;
             max-width: 680px;
@@ -129,7 +127,6 @@
             color: #ffffff;
             margin-bottom: 12px;
             line-height: 1.2;
-            margin-top: 10px;
         }
 
         h1 span {
@@ -143,7 +140,6 @@
                 letter-spacing: -1.5px;
                 line-height: 1.1;
                 margin-bottom: 16px;
-                margin-top: 0;
             }
         }
 
@@ -168,12 +164,6 @@
             max-width: 520px;
             position: relative;
             margin: 0 auto 18px auto;
-        }
-
-        @media (min-width: 768px) {
-            .search-container {
-                margin-bottom: 22px;
-            }
         }
 
         .search-input {
@@ -256,13 +246,6 @@
             border-color: #475569;
         }
 
-        .tag.primary:hover {
-            border-color: #3b82f6;
-            background: rgba(59, 130, 246, 0.05);
-            color: #3b82f6;
-            filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.4));
-        }
-
         /* Sección de Resultados */
         .results-section {
             display: none;
@@ -291,7 +274,7 @@
             }
         }
 
-        /* Menú de Categorías Lateral / Horizontal Deslizable */
+        /* Menú de Categorías */
         .categories-sidebar {
             display: flex;
             flex-direction: row;
@@ -338,7 +321,7 @@
             color: #ffffff;
         }
 
-        /* Cuadrícula de tarjetas de Comercios */
+        /* Cuadrícula de tarjetas */
         .cards-grid {
             flex: 1;
             display: grid;
@@ -359,23 +342,23 @@
             }
         }
 
-        /* Tarjeta con soporte para touch en móviles */
+        /* Tarjeta */
         .business-card {
             background: rgba(15, 20, 28, 0.6);
             border: 1px solid #1e293b;
             border-radius: 12px;
             padding: 16px;
             text-align: left;
-            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.20s ease;
             display: flex;
             flex-direction: column;
             gap: 12px;
-            -webkit-tap-highlight-color: transparent; /* Elimina recuadro gris nativo de Android/iOS al tocar */
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* EFECTO GLOW BLANCO (Tanto en Mouse Hover como al hacer Touch/Active en celular) */
         .business-card:hover, 
-        .business-card:active,
+        .business-card:active, 
         .business-card.touch-glow {
             background: rgba(20, 28, 38, 0.8);
             border-color: #ffffff;
@@ -489,7 +472,7 @@
                         <div class="business-logo-placeholder">[ Marilú Logo ]</div>
                         <div class="business-info">
                             <h3>Marilú</h3>
-                            <p>Sabores únicos para disfrutar. Amplia selección de hamburguesas y pizzas.</p>
+                            <p>Sabores uniques para disfrutar. Amplia selección de hamburguesas y pizzas.</p>
                             <span class="business-status status-closed">● Cerrado <span style="color:#475569; font-weight:300;">| Abre a la noche</span></span>
                         </div>
                     </div>
@@ -530,7 +513,6 @@
         const btnCategorias = document.getElementById('btn-categorias');
         const seccionResultados = document.getElementById('seccion-resultados');
         const mainContainer = document.getElementById('main-container');
-        const heroBlock = document.getElementById('hero-block');
 
         btnCategorias.addEventListener('click', () => {
             if (seccionResultados.style.display === 'block') {
@@ -542,27 +524,22 @@
                 btnCategorias.classList.add('active');
                 mainContainer.classList.add('results-active');
                 
-                // CONTROL DE SCROLL EXACTO: Calcula la posición del buscador y frena un poco antes de los resultados
                 setTimeout(() => {
-                    const yOffset = -25; // Pequeño espacio de seguridad hacia arriba para evitar el corte brusco
+                    const yOffset = -20; 
                     const yPosition = seccionResultados.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                    
-                    window.scrollTo({
-                        top: yPosition,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: yPosition, behavior: 'smooth' });
                 }, 50);
             }
         });
 
-        // OPTIMIZACIÓN TOUCH PARA CELULARES: Forza el efecto de Glow Blanco al tocar tarjetas en pantallas táctiles
+        // Eventos touch manuales para el glow
         const cards = document.querySelectorAll('.business-card');
         cards.forEach(card => {
             card.addEventListener('touchstart', () => {
                 card.classList.add('touch-glow');
             });
             card.addEventListener('touchend', () => {
-                setTimeout(() => { card.classList.remove('touch-glow'); }, 300);
+                setTimeout(() => { card.classList.remove('touch-glow'); }, 200);
             });
         });
     </script>
