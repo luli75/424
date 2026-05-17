@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explora Libertador - Propuesta Minimalista</title>
+    <title>Explora Libertador - Premium Arcade Edition</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Press+Start+2P&display=swap');
 
         * {
             box-sizing: border-box;
@@ -24,7 +24,6 @@
             position: relative;
         }
 
-        /* Iluminación ambiental de fondo */
         body::before {
             content: '';
             position: absolute;
@@ -38,7 +37,6 @@
             pointer-events: none;
         }
 
-        /* Barra superior */
         header {
             width: 100%;
             padding: 20px;
@@ -49,12 +47,9 @@
         }
 
         @media (min-width: 768px) {
-            header {
-                padding: 30px 40px;
-            }
+            header { padding: 30px 40px; }
         }
 
-        /* Logo LSM */
         .logo-lsm {
             font-size: 1.6rem;
             font-weight: 800;
@@ -63,12 +58,6 @@
             text-transform: uppercase;
             text-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
             user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .logo-lsm {
-                font-size: 1.8rem;
-            }
         }
 
         .instagram-link {
@@ -83,7 +72,6 @@
             filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.8));
         }
 
-        /* Contenedor principal */
         main {
             flex: 1;
             display: flex;
@@ -100,10 +88,7 @@
         }
 
         @media (min-width: 768px) {
-            main {
-                padding: 40px;
-                transform: translateY(-80px);
-            }
+            main { padding: 40px; transform: translateY(-80px); }
         }
 
         main.results-active {
@@ -111,7 +96,6 @@
             transform: translateY(0);
         }
 
-        /* Zona Hero */
         .hero-section {
             width: 100%;
             max-width: 680px;
@@ -133,37 +117,12 @@
             text-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
         }
 
-        @media (min-width: 768px) {
-            h1 {
-                font-size: 3.2rem;
-                letter-spacing: -1.5px;
-                line-height: 1.1;
-                margin-bottom: 16px;
-            }
-        }
-
         .description {
             font-size: 0.95rem;
             font-weight: 300;
             line-height: 1.5;
             color: #94a3b8;
             margin-bottom: 24px;
-        }
-
-        /* Control del salto de línea dinámico */
-        .mobile-break {
-            display: block;
-        }
-
-        @media (min-width: 768px) {
-            .description {
-                font-size: 1.05rem;
-                line-height: 1.6;
-                margin-bottom: 35px;
-            }
-            .mobile-break {
-                display: none;
-            }
         }
 
         .search-container {
@@ -178,48 +137,42 @@
             background: #0f141c;
             border: 1px solid #1e293b;
             padding: 12px 16px;
-            padding-right: 42px;
-            padding-left: 16px;
             border-radius: 12px;
             color: #ffffff;
             font-family: inherit;
             font-size: 0.9rem;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .search-input:focus {
-            outline: none;
-            border-color: #3b82f6;
-            background: #111823;
-            box-shadow: 0 0 0 1px #3b82f6, 0 4px 24px rgba(59, 130, 246, 0.15);
-        }
-
-        .search-input::placeholder {
-            color: #475569;
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            fill: #475569;
-            pointer-events: none;
-            transition: fill 0.2s ease;
-        }
-
-        .search-input:focus + .search-icon {
-            fill: #3b82f6;
+        .suggestions-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 540px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
         }
 
         .suggestions {
             display: flex;
             gap: 8px;
             align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
             width: 100%;
+        }
+
+        @media (max-width: 767px) {
+            .suggestions { flex-wrap: wrap; justify-content: center; overflow-x: hidden; }
+        }
+
+        @media (min-width: 768px) {
+            .suggestions {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding: 4px 0;
+                scrollbar-width: none;
+                scroll-behavior: smooth;
+            }
+            .suggestions::-webkit-scrollbar { display: none; }
+            .suggestions::before, .suggestions::after { content: ''; padding-left: 15px; }
         }
 
         .tag {
@@ -235,197 +188,252 @@
             white-space: nowrap;
         }
 
-        @media (min-width: 768px) {
-            .tag {
-                padding: 6px 14px;
-                font-size: 0.8rem;
-            }
-        }
-
-        .tag.primary {
-            color: #3b82f6; 
-            border-color: rgba(59, 130, 246, 0.25);
-            text-shadow: 0 0 8px rgba(59, 130, 246, 0.2);
-        }
+        .tag.primary { color: #3b82f6; border-color: rgba(59, 130, 246, 0.25); }
 
         .tag:hover, .tag.active {
             background: #1e293b;
             color: #ffffff;
-            border-color: #475569;
+            border-color: #3b82f6;
         }
 
-        /* Sección de Resultados */
-        .results-section {
+        .scroll-indicator {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            background: rgba(15, 20, 28, 0.8);
+            border: 1px solid #1e293b;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        .scroll-left { left: -12px; opacity: 0; pointer-events: none; }
+        .scroll-right { right: -12px; }
+
+        @media (min-width: 768px) { .scroll-indicator { display: flex; } }
+
+        /* ============================================================
+           🎮 CONTENEDORES DE MINIJUEGOS ARCADE
+        ============================================================ */
+        .game-section {
             display: none;
             width: 100%;
-            margin-top: 35px;
+            max-width: 480px;
+            margin: 30px auto 0 auto;
+            padding: 24px 16px;
+            background: #0f141c;
+            border: 3px dashed #3b82f6;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
             animation: fadeIn 0.4s ease forwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .explore-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 100%;
-        }
-
-        @media (min-width: 768px) {
-            .explore-container {
-                flex-direction: row;
-                align-items: flex-start;
-                gap: 30px;
-            }
-        }
-
-        /* Menú de Categorías */
-        .categories-sidebar {
-            display: flex;
-            flex-direction: row;
-            gap: 8px;
-            width: 100%;
-            overflow-x: auto;
-            padding-bottom: 8px;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .categories-sidebar::-webkit-scrollbar {
-            display: none;
-        }
-
-        @media (min-width: 768px) {
-            .categories-sidebar {
-                flex-direction: column;
-                width: 220px;
-                flex-shrink: 0;
-                overflow-x: visible;
-                padding-bottom: 0;
-                border-right: 1px solid #1e293b;
-                padding-right: 15px;
-            }
-        }
-
-        .category-item {
-            padding: 8px 16px;
-            background: #0f141c;
-            border: 1px solid #1e293b;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            color: #94a3b8;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-            text-align: left;
-        }
-
-        .category-item:hover, .category-item.active {
-            background: rgba(59, 130, 246, 0.08);
-            border-color: #3b82f6;
-            color: #ffffff;
-        }
-
-        /* Cuadrícula de tarjetas */
-        .cards-grid {
-            flex: 1;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-            width: 100%;
-        }
-
-        @media (min-width: 540px) {
-            .cards-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 900px) {
-            .cards-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* Tarjeta */
-        .business-card {
-            background: rgba(15, 20, 28, 0.6);
-            border: 1px solid #1e293b;
-            border-radius: 12px;
-            padding: 16px;
-            text-align: left;
-            transition: all 0.20s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            width: 100%;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .business-card:hover, 
-        .business-card:active, 
-        .business-card.touch-glow {
-            background: rgba(20, 28, 38, 0.8);
-            border-color: #ffffff;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
-        }
-
-        .business-logo-placeholder {
-            width: 100%;
-            height: 120px;
-            background: #090d14;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #475569;
-            font-size: 0.8rem;
-            font-weight: 500;
-            border: 1px dashed #1e293b;
+        .game-section h2 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.7rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
             text-transform: uppercase;
+            color: #3b82f6;
         }
 
-        .business-info h3 {
-            font-size: 1.05rem;
-            color: #ffffff;
-            font-weight: 700;
-            margin-bottom: 4px;
+        .game-stage {
+            position: relative;
+            width: 100%;
+            height: 190px;
+            background: #06090e;
+            border-radius: 12px;
+            border: 2px solid #1e293b;
+            margin: 0 auto;
+            overflow: hidden;
         }
 
-        .business-info p {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            font-weight: 300;
-            line-height: 1.4;
-            margin-bottom: 10px;
+        .victory-text {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-family: 'Press Start 2P', monospace;
+            font-size: 1.2rem;
+            z-index: 10;
+            pointer-events: none;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #victory-text-koala { color: #10b981; text-shadow: 0 0 10px rgba(16, 185, 129, 0.6); }
+        #victory-text-pepsi { color: #3b82f6; text-shadow: 0 0 10px rgba(59, 130, 246, 0.6); }
+        .victory-text.show { transform: translate(-50%, -50%) scale(1); }
+
+        .particles-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 6;
         }
 
-        .business-status {
-            font-size: 0.75rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
+        /* 🐨 JUEGO 1: BEBÉ KOALA */
+        .koala-character {
+            position: absolute;
+            right: 25px;
+            top: 50px;
+            width: 80px;
+            height: 80px;
+        }
+        .k-ear-l, .k-ear-r {
+            position: absolute; top: -6px; width: 32px; height: 32px; background: #788896; border-radius: 50%;
+        }
+        .k-ear-l { left: -6px; } .k-ear-r { right: -6px; }
+        .k-ear-l::after, .k-ear-r::after {
+            content: ''; position: absolute; top: 6px; left: 6px; width: 20px; height: 20px; background: #fca5a5; border-radius: 50%;
+        }
+        .k-head {
+            position: absolute; width: 80px; height: 72px; background: #94a3b8; border-radius: 45px 45px 38px 38px; z-index: 2; box-shadow: inset 0 -4px 0 rgba(0,0,0,0.1);
+        }
+        .k-eye-l, .k-eye-r {
+            position: absolute; top: 26px; width: 10px; height: 10px; background: #1e293b; border-radius: 50%;
+        }
+        .k-eye-l { left: 18px; } .k-eye-r { right: 18px; }
+        .k-nose {
+            position: absolute; top: 28px; left: 50%; transform: translateX(-50%); width: 16px; height: 24px; background: #27272a; border-radius: 10px; z-index: 3;
+        }
+        .k-mouth {
+            position: absolute; top: 54px; left: 50%; transform: translateX(-50%); width: 14px; height: 12px; border-radius: 0 0 8px 8px; background: #451a1a;
+        }
+        .koala-character.happy .k-mouth { width: 16px; height: 10px; background: transparent; border-bottom: 4px solid #1e293b; border-radius: 50%; }
+
+        .interactive-pizza { position: absolute; left: 20px; top: 65px; width: 36px; height: 36px; z-index: 5; }
+        .p-body { width: 0; height: 0; border-top: 16px solid transparent; border-bottom: 16px solid transparent; border-left: 32px solid #f59e0b; position: relative; }
+        .p-body::after { content: ''; position: absolute; left: -35px; top: -16px; height: 32px; width: 5px; background: #b45309; border-radius: 4px 0 0 4px; }
+        .p-topping { position: absolute; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; }
+        .pt1 { left: -16px; top: -5px; } .pt2 { left: -24px; top: 4px; }
+
+        /* 👨‍🚀 JUEGO 2: REDISEÑO REALISTA DEL ASTRONAUTA DEL ESPACIO */
+        .astronaut-character {
+            position: absolute;
+            right: 30px;
+            top: 50px;
+            width: 70px;
+            height: 95px;
         }
 
-        .status-open { color: #10b981; }
-        .status-closed { color: #ef4444; }
+        /* Mochila de oxígeno redonda por detrás */
+        .a-backpack {
+            position: absolute; left: -12px; top: 25px; width: 20px; height: 50px; background: #cbd5e1; border-radius: 8px; border: 2.5px solid #1e293b; z-index: 1;
+        }
+
+        /* Traje anatómico redondeado */
+        .a-suit-body {
+            position: absolute; top: 40px; left: 5px; width: 60px; height: 48px; background: #f8fafc; border-radius: 18px 18px 12px 12px; border: 2.5px solid #1e293b; z-index: 3; box-shadow: inset -5px -4px 0 rgba(0,0,0,0.08);
+        }
+
+        /* Hombros inflados redondos */
+        .a-shoulder-l, .a-shoulder-r {
+            position: absolute; top: 44px; width: 16px; height: 22px; background: #e2e8f0; border: 2.5px solid #1e293b; border-radius: 50%; z-index: 2;
+        }
+        .a-shoulder-l { left: -4px; } .a-shoulder-r { right: -4px; }
+
+        /* Casco perfectamente esférico */
+        .a-helmet {
+            position: absolute; top: 0; left: 7px; width: 56px; height: 54px; background: #ffffff; border-radius: 50%; border: 2.5px solid #1e293b; z-index: 4; box-shadow: inset -3px 3px 0 rgba(0,0,0,0.05);
+        }
+
+        /* Visor de policarbonato con líneas fluidas */
+        .a-visor-glass {
+            position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 40px; height: 30px; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e1b4b 100%); border-radius: 50% 50% 40% 40%; border: 2.5px solid #1e293b; overflow: hidden;
+        }
+        .a-visor-glass::before {
+            content: ''; position: absolute; top: 3px; left: 5px; width: 24px; height: 7px; background: rgba(255, 255, 255, 0.35); border-radius: 10px; transform: rotate(-8deg);
+        }
+
+        /* Detalles de insignia y mangueras */
+        .a-chest-badge {
+            position: absolute; top: 12px; left: 12px; width: 12px; height: 12px; background: #ef4444; border-radius: 3px; border: 1.5px solid #1e293b;
+        }
+        .a-chest-badge::after { content: ''; position: absolute; right: -14px; top: 1px; width: 10px; height: 4px; background: #3b82f6; }
+
+        /* 🥤 REDISEÑO CILÍNDRICO DE LA LATITA DE PEPSI (3D) */
+        .interactive-pepsi { position: absolute; left: 20px; top: 65px; width: 28px; height: 46px; z-index: 5; }
+        .pepsi-cylinder {
+            width: 100%; height: 100%; background: linear-gradient(90deg, #1d4ed8 0%, #3b82f6 30%, #2563eb 70%, #1e40af 100%); border-radius: 6px / 10px; border: 2px solid #0f172a; position: relative; box-shadow: 0 5px 12px rgba(0,0,0,0.4);
+        }
+        /* Tapas elípticas de aluminio superior e inferior */
+        .pepsi-rim-top {
+            position: absolute; top: -3px; left: -2px; width: 28px; height: 6px; background: linear-gradient(90deg, #94a3b8, #e2e8f0, #cbd5e1); border-radius: 50%; border: 2px solid #0f172a; z-index: 5;
+        }
+        .pepsi-rim-bottom {
+            position: absolute; bottom: -4px; left: -2px; width: 28px; height: 6px; background: #94a3b8; border-radius: 50%; border: 2px solid #0f172a; z-index: 1;
+        }
+        /* Emblema esférico central */
+        .pepsi-logo-sphere {
+            position: absolute; top: 14px; left: 50%; transform: translateX(-50%) rotate(-20deg); width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid #ffffff; overflow: hidden; background: #ffffff; z-index: 4;
+        }
+        .pepsi-logo-sphere::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 50%; background: #ef4444;
+        }
+        .pepsi-logo-sphere::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: #1d4ed8;
+        }
+
+        .pixel-heart, .pixel-star { position: absolute; font-size: 16px; opacity: 0; animation: floatPixel 1.2s ease forwards; }
+        @keyframes floatPixel {
+            0% { transform: translateY(0) scale(0.6); opacity: 1; }
+            100% { transform: translateY(-60px) translateX(5px) scale(0.4); opacity: 0; }
+        }
+
+        /* CONTROLES TÁCTILES ARCADE */
+        .arcade-controls { margin-top: 18px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+        .arcade-row { display: flex; gap: 8px; }
+        .arcade-btn {
+            width: 46px; height: 42px; background: #1e293b; border: 2px solid #3b82f6; border-bottom-width: 5px; border-radius: 8px;
+            color: #ffffff; font-family: 'Press Start 2P', monospace; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; cursor: pointer; user-select: none; transition: all 0.05s ease;
+        }
+        .arcade-btn:active { border-bottom-width: 2px; transform: translateY(3px); background: #3b82f6; }
+
+        /* ============================================================
+           🍔 SECCIÓN DE CATEGORÍAS (BASE DE DATOS COMPLETA CARGADA)
+        ============================================================ */
+        .results-section { display: none; width: 100%; margin-top: 35px; animation: fadeIn 0.4s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .explore-container { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+        @media (min-width: 768px) { .explore-container { flex-direction: row; align-items: flex-start; gap: 30px; } }
+        
+        .categories-sidebar { display: flex; flex-direction: row; gap: 8px; width: 100%; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; }
+        .categories-sidebar::-webkit-scrollbar { display: none; }
+        @media (min-width: 768px) { .categories-sidebar { flex-direction: column; width: 240px; flex-shrink: 0; border-right: 1px solid #1e293b; padding-right: 15px; height: 450px; overflow-y: auto; } }
+        
+        .category-item { padding: 10px 14px; background: #0f141c; border: 1px solid #1e293b; border-radius: 8px; font-size: 0.8rem; color: #94a3b8; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; margin-bottom: 4px; }
+        .category-item.active { background: rgba(59, 130, 246, 0.08); border-color: #3b82f6; color: #ffffff; font-weight: 600; }
+        
+        .cards-grid { flex: 1; display: grid; grid-template-columns: 1fr; gap: 16px; width: 100%; }
+        @media (min-width: 540px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 900px) { .cards-grid { grid-template-columns: repeat(3, 1fr); } }
+        
+        .business-card { background: rgba(15, 20, 28, 0.6); border: 1px solid #1e293b; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+        .business-logo-placeholder { width: 100%; height: 110px; background: #090d14; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #475569; font-size: 0.75rem; border: 1px dashed #1e293b; text-transform: uppercase; font-family: monospace; text-align: center; padding: 5px; }
+        .business-info h3 { font-size: 1.05rem; color: #ffffff; font-weight: 700; margin-bottom: 4px; }
+        .business-info p { font-size: 0.85rem; color: #94a3b8; font-weight: 300; line-height: 1.4; margin-bottom: 8px; }
+        .business-status { font-size: 0.75rem; font-weight: 600; color: #10b981; }
+        .business-status.closed { color: #ef4444; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo-lsm">LSM</div>
-        
         <a href="https://instagram.com" target="_blank" class="instagram-link" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
             </svg>
         </a>
     </header>
@@ -434,123 +442,392 @@
         <div class="hero-section" id="hero-block">
             <h1>Explora <span>Libertador</span></h1>
             <p class="description">
-                Tu conexión directa con todo lo que <br class="mobile-break"> Libertador tiene para ofrecer. <br>
+                Tu conexión directa con todo lo que Libertador tiene para ofrecer. <br>
                 Integrando comercios, servicios y novedades.
             </p>
 
             <div class="search-container">
-                <input type="text" class="search-input" placeholder="Buscar...">
-                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                </svg>
+                <input type="text" class="search-input" placeholder="Buscar comercios...">
             </div>
 
-            <div class="suggestions">
-                <span class="tag primary" id="btn-categorias">Ver por categorías</span>
-                <span class="tag">Alquileres</span>
-                <span class="tag">Comida vegana</span>
-                <span class="tag">Ferias</span>
+            <div class="suggestions-wrapper">
+                <div class="scroll-indicator scroll-left" id="arrow-left">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </div>
+
+                <div class="suggestions" id="suggestions-scroll">
+                    <span class="tag primary" id="btn-categorias">Ver por categorías</span>
+                    <span class="tag" id="btn-vegana">Comida vegana</span>
+                    <span class="tag" id="btn-pepsi">Pepsi</span>
+                    <span class="tag">Alquileres</span>
+                    <span class="tag">Ferias</span>
+                    <span class="tag">Servicios de reparación</span>
+                </div>
+
+                <div class="scroll-indicator scroll-right" id="arrow-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-section" id="seccion-vegana">
+            <h2>a koala baby<br>wants to eat</h2>
+            <div class="game-stage" id="stage-koala">
+                <div class="particles-layer" id="layer-hearts"></div>
+                <div class="victory-text" id="victory-text-koala">YUMMY! ❤️</div>
+                <div class="interactive-pizza" id="game-pizza">
+                    <div class="p-body"><div class="p-topping pt1"></div><div class="p-topping pt2"></div></div>
+                </div>
+                <div class="koala-character" id="game-koala">
+                    <div class="k-ear-l"></div><div class="k-ear-r"></div>
+                    <div class="k-head">
+                        <div class="k-eye-l"></div><div class="k-eye-r"></div>
+                        <div class="k-nose"></div><div class="k-mouth"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="arcade-controls">
+                <div class="arcade-row"><button class="arcade-btn" id="koala-up">↑</button></div>
+                <div class="arcade-row">
+                    <button class="arcade-btn" id="koala-left">←</button>
+                    <button class="arcade-btn" id="koala-down">↓</button>
+                    <button class="arcade-btn" id="koala-right">→</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-section" id="seccion-pepsi">
+            <h2>An astronaut<br>needs a pepsi</h2>
+            <div class="game-stage" id="stage-pepsi">
+                <div class="particles-layer" id="layer-stars"></div>
+                <div class="victory-text" id="victory-text-pepsi">REFRESH! 🧊</div>
+                
+                <div class="interactive-pepsi" id="game-pepsi">
+                    <div class="pepsi-rim-top"></div>
+                    <div class="pepsi-cylinder">
+                        <div class="pepsi-logo-sphere"></div>
+                    </div>
+                    <div class="pepsi-rim-bottom"></div>
+                </div>
+
+                <div class="astronaut-character" id="game-astronaut">
+                    <div class="a-backpack"></div>
+                    <div class="a-shoulder-l"></div>
+                    <div class="a-shoulder-r"></div>
+                    <div class="a-suit-body">
+                        <div class="a-chest-badge"></div>
+                    </div>
+                    <div class="a-helmet">
+                        <div class="a-visor-glass"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="arcade-controls">
+                <div class="arcade-row"><button class="arcade-btn" id="pepsi-up">↑</button></div>
+                <div class="arcade-row">
+                    <button class="arcade-btn" id="pepsi-left">←</button>
+                    <button class="arcade-btn" id="pepsi-down">↓</button>
+                    <button class="arcade-btn" id="pepsi-right">→</button>
+                </div>
             </div>
         </div>
 
         <div class="results-section" id="seccion-resultados">
             <div class="explore-container">
-                
-                <div class="categories-sidebar">
-                    <div class="category-item active">🍔 Gastronomía</div>
-                    <div class="category-item">🏨 Alojamiento</div>
-                    <div class="category-item">🛒 Supermercados</div>
-                    <div class="category-item">✨ Estética y Belleza</div>
-                    <div class="category-item">💻 Tecnología</div>
-                    <div class="category-item">🛠️ Servicios</div>
+                <div class="categories-sidebar" id="sidebar-comercial">
+                    <div class="category-item active" data-cat="gastronomia_cenas">🍔 Gastronomía (Cenas)</div>
+                    <div class="category-item" data-cat="gastronomia_desayunos">☕ Gastronomía (Desayunos)</div>
+                    <div class="category-item" data-cat="hoteles">🏨 Hoteles</div>
+                    <div class="category-item" data-cat="cabanas">🏡 Cabañas</div>
+                    <div class="category-item" data-cat="farmacias">💊 Farmacias</div>
+                    <div class="category-item" data-cat="colectivos">🚌 Colectivos / Horarios</div>
+                    <div class="category-item" data-cat="servicios_medicos">⚕️ Servicios Médicos</div>
+                    <div class="category-item" data-cat="supermercados">🛒 Supermercados</div>
                 </div>
-
-                <div class="cards-grid">
-                    
-                    <div class="business-card">
-                        <div class="business-logo-placeholder">[ Imperio Logo ]</div>
-                        <div class="business-info">
-                            <h3>Imperio</h3>
-                            <p>Somos creadores de las mejores comidas en LSM 🔥</p>
-                            <span class="business-status status-open">● Abierto <span style="color:#475569; font-weight:300;">| Hasta las 15:00</span></span>
-                        </div>
+                <div class="cards-grid" id="grid-tarjetas">
                     </div>
-
-                    <div class="business-card">
-                        <div class="business-logo-placeholder">[ Marilú Logo ]</div>
-                        <div class="business-info">
-                            <h3>Marilú</h3>
-                            <p>Sabores únicos para disfrutar. Amplia selección de hamburguesas y pizzas.</p>
-                            <span class="business-status status-closed">● Cerrado <span style="color:#475569; font-weight:300;">| Abre a la noche</span></span>
-                        </div>
-                    </div>
-
-                    <div class="business-card">
-                        <div class="business-logo-placeholder">[ Yo Heladerías ]</div>
-                        <div class="business-info">
-                            <h3>Yo heladerías</h3>
-                            <p>Somos una heladería y cafetería que ofrece momentos de sabor único.</p>
-                            <span class="business-status status-open">● Abierto <span style="color:#475569; font-weight:300;">| Hasta las 23:30</span></span>
-                        </div>
-                    </div>
-
-                    <div class="business-card">
-                        <div class="business-logo-placeholder">[ Tranqui ]</div>
-                        <div class="business-info">
-                            <h3>TRANQUI</h3>
-                            <p>Somos un emprendimiento familiar. Nos dedicamos a la cafetería de especialidad.</p>
-                            <span class="business-status status-open">● Abierto <span style="color:#475569; font-weight:300;">| Hasta las 15:00</span></span>
-                        </div>
-                    </div>
-
-                    <div class="business-card">
-                        <div class="business-logo-placeholder">[ El Rincón ]</div>
-                        <div class="business-info">
-                            <h3>El rincón de la empanada</h3>
-                            <p>Donde hay calidad no hay competencia. Las mejores empanadas caseras.</p>
-                            <span class="business-status status-closed">● Cerrado <span style="color:#475569; font-weight:300;">| Abre a las 19:30</span></span>
-                        </div>
-                    </div>
-
-                </div>
             </div>
         </div>
     </main>
 
     <script>
+        // BASE DE DATOS TOTALMENTE COMPLETA
+        const baseDeDatos = {
+            gastronomia_cenas: [
+                { nombre: "Imperio Lomitos", desc: "Los mejores lomitos, pizzas y hamburguesas artesanales de la ciudad. Delivery rápido.", status: "● Abierto" },
+                { nombre: "Pizzería San Martín", desc: "Pizzas al molde, empanadas norteñas y calzones tradicionales excelentes.", status: "● Abierto" },
+                { nombre: "Rotisería El Buen Sabor", desc: "Platos elaborados, minutas, milanesas y pollos asados al momento.", status: "● Cerrado", isClosed: true }
+            ],
+            gastronomia_desayunos: [
+                { nombre: "Sublime Pastelería", desc: "Cafetería de especialidad, licuados, tortas personalizadas y budines veganos.", status: "● Abierto" },
+                { nombre: "Café Don Luis", desc: "Tradicional punto de encuentro. Facturas calientes todas las mañanas.", status: "● Abierto" },
+                { nombre: "D'Buen Gusto Mañanas", desc: "Opciones saludables, tostados integrales y jugos naturales exprimidos.", status: "● Abierto" }
+            ],
+            hoteles: [
+                { nombre: "Hotel Libertador", desc: "Habitaciones ejecutivas y familiares con desayuno incluido a cuadras del sanatorio.", status: "● Disponible" },
+                { nombre: "Hospedaje Central", desc: "Atención cálida, habitaciones climatizadas, Wi-Fi libre de alta velocidad y cochera.", status: "● Disponible" }
+            ],
+            cabanas: [
+                { nombre: "Cabañas del Sol", desc: "Unidades totalmente equipadas en zona residencial parquizada muy tranquila.", status: "● Disponible" },
+                { nombre: "Los Ceibos Complejo", desc: "Cabañas rústicas premium con piscina, parrilla individual y estacionamiento privado.", status: "● Ocupado", isClosed: true }
+            ],
+            farmacias: [
+                { nombre: "Farmacia San Martín", desc: "Medicamentos, perfumería y atención profesional. Obras sociales aceptadas.", status: "● De Turno" },
+                { nombre: "Farmacia del Pueblo", desc: "Amplio stock en tratamientos crónicos y artículos de cuidado personal general.", status: "● Abierto" }
+            ],
+            colectivos: [
+                { nombre: "Empresa Libertador S.R.L.", desc: "Frecuencias diarias directas hacia Paraná, Diamante y Crespo. Boletería abierta.", status: "● En Horario" },
+                { nombre: "Línea Interurbana Valle", desc: "Conexiones rápidas de media distancia regionales con horarios actualizados.", status: "● En Horario" }
+            ],
+            servicios_medicos: [
+                { nombre: "Centro de Diagnóstico LSM", desc: "Estudios de alta complejidad, ecografías y laboratorio clínico integrado.", status: "● Atendiendo" },
+                { nombre: "Consultorios Integrados", desc: "Atención de especialistas particulares: pediatría, kinesiología y nutrición.", status: "● Atendiendo" }
+            ],
+            supermercados: [
+                { nombre: "Supermercado El Sol", desc: "Carnicería premium, verdulería fresca y góndolas completas con marcas líderes.", status: "● Abierto" },
+                { nombre: "Autoservicio Familiar", desc: "Excelente atención, promociones semanales vigentes y artículos de limpieza.", status: "● Abierto" }
+            ]
+        };
+
         const btnCategorias = document.getElementById('btn-categorias');
+        const btnVegana = document.getElementById('btn-vegana');
+        const btnPepsi = document.getElementById('btn-pepsi');
+        
         const seccionResultados = document.getElementById('seccion-resultados');
+        const seccionVegana = document.getElementById('seccion-vegana');
+        const seccionPepsi = document.getElementById('seccion-pepsi');
         const mainContainer = document.getElementById('main-container');
+        const gridTarjetas = document.getElementById('grid-tarjetas');
+
+        let currentGame = null; 
+        let isPlaying = true;
+        let objX = 20, objY = 65;
+        const speed = 15;
+
+        let characterY = 40;
+        let charDirection = 1; 
+        const charSpeed = 1.1; 
+        let animationFrameId = null;
+
+        function cargarCategoria(categoria) {
+            gridTarjetas.innerHTML = "";
+            if(!baseDeDatos[categoria]) return;
+            baseDeDatos[categoria].forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'business-card';
+                card.innerHTML = `
+                    <div class="business-logo-placeholder">[ ${item.nombre.toUpperCase()} ]</div>
+                    <div class="business-info">
+                        <h3>${item.nombre}</h3>
+                        <p>${item.desc}</p>
+                        <span class="business-status ${item.isClosed ? 'closed' : ''}">${item.status}</span>
+                    </div>
+                `;
+                gridTarjetas.appendChild(card);
+            });
+        }
+
+        function hideAllSections() {
+            cancelAnimationFrame(animationFrameId);
+            seccionResultados.style.display = 'none';
+            seccionVegana.style.display = 'none';
+            seccionPepsi.style.display = 'none';
+            btnCategorias.classList.remove('active');
+            btnVegana.classList.remove('active');
+            btnPepsi.classList.remove('active');
+            mainContainer.classList.remove('results-active');
+        }
 
         btnCategorias.addEventListener('click', () => {
-            if (seccionResultados.style.display === 'block') {
-                seccionResultados.style.display = 'none';
-                btnCategorias.classList.remove('active');
-                mainContainer.classList.remove('results-active');
-            } else {
+            const isShowing = seccionResultados.style.display === 'block';
+            hideAllSections();
+            if (!isShowing) {
                 seccionResultados.style.display = 'block';
                 btnCategorias.classList.add('active');
                 mainContainer.classList.add('results-active');
-                
-                setTimeout(() => {
-                    const yOffset = -20; 
-                    const yPosition = seccionResultados.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                    window.scrollTo({ top: yPosition, behavior: 'smooth' });
-                }, 50);
+                cargarCategoria('gastronomia_cenas');
+                desplazarHacia(seccionResultados);
+                currentGame = null;
             }
         });
 
-        // Eventos touch manuales para el glow
-        const cards = document.querySelectorAll('.business-card');
-        cards.forEach(card => {
-            card.addEventListener('touchstart', () => {
-                card.classList.add('touch-glow');
-            });
-            card.addEventListener('touchend', () => {
-                setTimeout(() => { card.classList.remove('touch-glow'); }, 200);
+        document.querySelectorAll('#sidebar-comercial .category-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                document.querySelectorAll('#sidebar-comercial .category-item').forEach(i => i.classList.remove('active'));
+                e.target.classList.add('active');
+                cargarCategoria(e.target.getAttribute('data-cat'));
             });
         });
-    </script>
 
+        btnVegana.addEventListener('click', () => {
+            const isShowing = seccionVegana.style.display === 'block';
+            hideAllSections();
+            if (!isShowing) {
+                seccionVegana.style.display = 'block';
+                btnVegana.classList.add('active');
+                mainContainer.classList.add('results-active');
+                desplazarHacia(seccionVegana);
+                initGame('koala');
+            }
+        });
+
+        btnPepsi.addEventListener('click', () => {
+            const isShowing = seccionPepsi.style.display === 'block';
+            hideAllSections();
+            if (!isShowing) {
+                seccionPepsi.style.display = 'block';
+                btnPepsi.classList.add('active');
+                mainContainer.classList.add('results-active');
+                desplazarHacia(seccionPepsi);
+                initGame('pepsi');
+            }
+        });
+
+        function desplazarHacia(el) {
+            setTimeout(() => { window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 20, behavior: 'smooth' }); }, 50);
+        }
+
+        // ============================================================
+        // 🕹️ LOOP OPERATIVO ARCADE
+        // ============================================================
+        const pz = document.getElementById('game-pizza');
+        const ps = document.getElementById('game-pepsi');
+        const kl = document.getElementById('game-koala');
+        const ast = document.getElementById('game-astronaut');
+
+        function initGame(type) {
+            cancelAnimationFrame(animationFrameId);
+            currentGame = type;
+            objX = 20; objY = 65;
+            characterY = 40;
+            charDirection = 1;
+            isPlaying = true;
+            
+            pz.style.display = 'block';
+            ps.style.display = 'block';
+            document.getElementById('victory-text-koala').classList.remove('show');
+            document.getElementById('victory-text-pepsi').classList.remove('show');
+            
+            updateRenderPosition();
+            gameLoop();
+        }
+
+        function gameLoop() {
+            if (!currentGame) return;
+
+            if (isPlaying) {
+                characterY += charSpeed * charDirection;
+                if (characterY >= 90) { charDirection = -1; }
+                if (characterY <= 10) { charDirection = 1; }
+
+                if (currentGame === 'koala') {
+                    kl.style.top = characterY + 'px';
+                } else if (currentGame === 'pepsi') {
+                    ast.style.top = characterY + 'px';
+                }
+                checkHitbox();
+            }
+
+            animationFrameId = requestAnimationFrame(gameLoop);
+        }
+
+        function updateRenderPosition() {
+            if (currentGame === 'koala') {
+                pz.style.left = objX + 'px'; pz.style.top = objY + 'px';
+            } else if (currentGame === 'pepsi') {
+                ps.style.left = objX + 'px'; ps.style.top = objY + 'px';
+            }
+        }
+
+        function moveActiveGame(dir) {
+            if (!isPlaying || !currentGame) return;
+            const currentStageWidth = 440; 
+            
+            if (dir === 'up' && objY > 5) objY -= speed;
+            if (dir === 'down' && objY < 140) objY += speed;
+            if (dir === 'left' && objX > 5) objX -= speed;
+            if (dir === 'right' && objX < currentStageWidth - 45) objX += speed;
+
+            updateRenderPosition();
+        }
+
+        function checkHitbox() {
+            if (!currentGame || !isPlaying) return;
+            
+            if (objX >= 310) {
+                if (objY >= (characterY - 15) && objY <= (characterY + 70)) {
+                    triggerVictoryArcade();
+                }
+            }
+        }
+
+        function triggerVictoryArcade() {
+            isPlaying = false;
+            if (currentGame === 'koala') {
+                pz.style.display = 'none';
+                document.getElementById('victory-text-koala').classList.add('show');
+                launchBurstParticles('❤️', 'layer-hearts', 350);
+            } else if (currentGame === 'pepsi') {
+                ps.style.display = 'none';
+                document.getElementById('victory-text-pepsi').classList.add('show');
+                launchBurstParticles('✨', 'layer-stars', 350);
+            }
+            
+            const savedGameMode = currentGame;
+            setTimeout(() => { 
+                if (currentGame === savedGameMode) initGame(savedGameMode); 
+            }, 2500);
+        }
+
+        function launchBurstParticles(symbol, layerId, targetX) {
+            const layer = document.getElementById(layerId);
+            for (let i = 0; i < 8; i++) {
+                const part = document.createElement('span');
+                part.className = symbol === '❤️' ? 'pixel-heart' : 'pixel-star';
+                part.innerText = symbol;
+                part.style.left = (targetX + (Math.random() * 40 - 20)) + 'px';
+                part.style.top = (characterY + 30 + (Math.random() * 30 - 15)) + 'px';
+                layer.appendChild(part);
+                setTimeout(() => part.remove(), 1200);
+            }
+        }
+
+        // Click Bindings
+        document.getElementById('koala-up').addEventListener('click', () => moveActiveGame('up'));
+        document.getElementById('koala-down').addEventListener('click', () => moveActiveGame('down'));
+        document.getElementById('koala-left').addEventListener('click', () => moveActiveGame('left'));
+        document.getElementById('koala-right').addEventListener('click', () => moveActiveGame('right'));
+
+        document.getElementById('pepsi-up').addEventListener('click', () => moveActiveGame('up'));
+        document.getElementById('pepsi-down').addEventListener('click', () => moveActiveGame('down'));
+        document.getElementById('pepsi-left').addEventListener('click', () => moveActiveGame('left'));
+        document.getElementById('pepsi-right').addEventListener('click', () => moveActiveGame('right'));
+
+        window.addEventListener('keydown', (e) => {
+            if (currentGame && (seccionVegana.style.display === 'block' || seccionPepsi.style.display === 'block')) {
+                if (e.key === 'ArrowUp' || e.key === 'w') { e.preventDefault(); moveActiveGame('up'); }
+                if (e.key === 'ArrowDown' || e.key === 's') { e.preventDefault(); moveActiveGame('down'); }
+                if (e.key === 'ArrowLeft' || e.key === 'a') { e.preventDefault(); moveActiveGame('left'); }
+                if (e.key === 'ArrowRight' || e.key === 'd') { e.preventDefault(); moveActiveGame('right'); }
+            }
+        });
+
+        // Carrusel
+        const suggestionsScroll = document.getElementById('suggestions-scroll');
+        const arrowLeft = document.getElementById('arrow-left');
+        const arrowRight = document.getElementById('arrow-right');
+        if (arrowLeft && arrowRight) {
+            arrowRight.addEventListener('click', () => suggestionsScroll.scrollBy({ left: 160, behavior: 'smooth' }));
+            arrowLeft.addEventListener('click', () => suggestionsScroll.scrollBy({ left: -160, behavior: 'smooth' }));
+            suggestionsScroll.addEventListener('scroll', () => {
+                const sl = suggestionsScroll.scrollLeft;
+                arrowLeft.style.opacity = sl > 10 ? '1' : '0';
+                arrowLeft.style.pointerEvents = sl > 10 ? 'auto' : 'none';
+                const max = suggestionsScroll.scrollWidth - suggestionsScroll.clientWidth;
+                arrowRight.style.opacity = sl >= max - 10 ? '0' : '1';
+                arrowRight.style.pointerEvents = sl >= max - 10 ? 'none' : 'auto';
+            });
+        }
+    </script>
 </body>
 </html>
